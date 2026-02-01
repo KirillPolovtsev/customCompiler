@@ -1,0 +1,4 @@
+Token #46, with value = a; at line 0, column 0
+Token #46, with value = b; at line 0, column 2
+Token #46, with value = c; at line 0, column 4
+Token #46, with value = d; at line 1, column 0

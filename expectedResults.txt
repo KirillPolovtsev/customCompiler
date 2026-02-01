@@ -1,0 +1,63 @@
+badDec.as
+Error: -- requires int or float variable, got bool
+
+badInc.as
+Error: ++ requires int or float variable, got char
+
+badNegation.as
+Error: Unary ~ requires bool or int, got char
+
+badString.as
+Error: Invalid types for - operator: string and string
+
+badTernaryCond.as
+Error: Ternary condition expects 'true', 'false', or bool-compatible type, got float
+
+badTernaryTypes.as
+Error: Ternary branches must have the same type: float vs boolean
+
+boolToFloat.as
+Error: Cannot initialize float with boolean
+
+boolToInt.as
+Error: Cannot initialize int with boolean
+
+callNonExistFunc.as
+Error: functin nonExistFoo called but not declared
+
+charToFloat.as
+Error: Tried to assign char to type float : y = x;
+
+charToInt.as
+Error: Cannot initialize int with char
+
+floatToInt.as
+Error: Cannot initialize int with float
+
+fullValidProgram.as
+pass
+
+incompatBinary.as
+INCORRECT: logical || should have binary operands
+
+intArrayToBoolArray.as
+Error: Tried to assign int[] to type bool[] : y = x;
+
+noReturn.as
+Error: Method main must return int
+
+reassignFinal.as
+Error: Cannot assign to final variable y
+
+redefMethod.as
+Error: tried to redeclare a routine foo
+
+redefVar.as
+Error: variable already declared
+
+redefVarAsMethod.as
+Error: name has already been declared
+
+returnTypeBad.as
+Error: Cannot return float from method expecting int
+

@@ -1,0 +1,1 @@
+class<x>:int foo:Error: Cannot return float from method expecting int

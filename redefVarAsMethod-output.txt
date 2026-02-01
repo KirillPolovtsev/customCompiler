@@ -1,0 +1,1 @@
+class<x>:Error: tried to redeclare a routine y

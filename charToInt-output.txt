@@ -1,0 +1,1 @@
+class<x>:int main:Error: Cannot initialize int with char

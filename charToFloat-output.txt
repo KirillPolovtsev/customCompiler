@@ -1,0 +1,2 @@
+class<x>:void main:Error: Tried to assign char to type float : y = x;
+

@@ -1,0 +1,1 @@
+class<x>:void main:Error: Ternary branches must have same type: float vs bool

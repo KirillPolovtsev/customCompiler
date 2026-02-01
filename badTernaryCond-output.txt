@@ -1,0 +1,1 @@
+class<x>:void main:Error: Ternary condition expects 'true', 'false', or bool-compatible type, got float

@@ -1,0 +1,2 @@
+class<x>:int main:Error: Tried to assign int[] to type bool[] : y = x;
+
