@@ -30,7 +30,8 @@ FILE=    Lexer.java      parser.java    sym.java \
 		WhileBase.java Token.java IntType.java FloatType.java \
 		CharType.java BoolType.java NonTypeCastExpr.java ActionExpr.java\
     SymbolTable.java LangException.java Pair.java InOutList.java InOut.java\
-		ScopeContext.java TypeCheckingTest.java ScannerTest.java LexerTest.java 
+		ScopeContext.java TypeCheckingTest.java ScannerTest.java LexerTest.java \
+		Optimizer.java MIPSCodeGenerator.java CompilerMain.java 
 
 run: test1Output.txt test2Output.txt
 
@@ -65,3 +66,44 @@ typecheck: all
 		echo "Output saved to $$basename-output.txt"; \
 		echo ""; \
 	done
+
+# Compile a single file to MIPS assembly with optimization
+# Usage: make compile FILE=test1.as
+compile: all
+	@if [ -z "$(FILE)" ]; then \
+		echo "Usage: make compile FILE=<input_file>"; \
+		exit 1; \
+	fi
+	$(JAVA) -cp $(CP) CompilerMain -o $(FILE:.as=.asm) $(FILE)
+
+# Compile without optimization
+compile-no-opt: all
+	@if [ -z "$(FILE)" ]; then \
+		echo "Usage: make compile-no-opt FILE=<input_file>"; \
+		exit 1; \
+	fi
+	$(JAVA) -cp $(CP) CompilerMain -O0 -o $(FILE:.as=.asm) $(FILE)
+
+# Compile and show AST before and after optimization
+compile-verbose: all
+	@if [ -z "$(FILE)" ]; then \
+		echo "Usage: make compile-verbose FILE=<input_file>"; \
+		exit 1; \
+	fi
+	$(JAVA) -cp $(CP) CompilerMain -ast -opt-ast -o $(FILE:.as=.asm) $(FILE)
+
+# Run all test files through the full compiler
+compile-all: all
+	@echo "Compiling all test files to MIPS assembly..."
+	@for file in *.as; do \
+		echo "Compiling: $$file"; \
+		$(JAVA) -cp $(CP) CompilerMain -o $${file%.as}.asm $$file 2>&1 || true; \
+		echo ""; \
+	done
+	@echo "Done. Check .asm files for output."
+
+# Demo: compile test1.as and test2.as
+demo: all
+	$(JAVA) -cp $(CP) CompilerMain -ast -opt-ast -o test1.asm test1.as
+	@echo ""
+	$(JAVA) -cp $(CP) CompilerMain -ast -opt-ast -o test2.asm test2.as
